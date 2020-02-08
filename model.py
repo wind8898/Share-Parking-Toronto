@@ -1,7 +1,7 @@
 from .app import db
 
 class ParkingSpot(db.Model):
-    __tablename__ = 'share_parking_spots'
+    __tablename__ = 'parking_share_spots'
 
     garage_id = db.Column(db.String(64), primary_key=True)
     address = db.Column(db.String(64))
