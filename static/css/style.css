@@ -4,7 +4,7 @@ body {
 .header {
     text-align: center;
     background-image: url("../../asset/img/header-bg.jpg")!important;
-    height: 50vh;
+    height: 60vh;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -130,4 +130,10 @@ body {
   }
   
 
-  
+
+
+/* form page */
+
+.form {
+    padding-bottom: 4rem;
+}
