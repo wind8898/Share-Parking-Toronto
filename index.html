@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="super awesome team - share parking">
+        <meta name="keywords" content="share parking toronto share-parking free parking">
+        <meta name="author" content="super awesome team">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- bootstrap -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <!-- leaflet css -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css">
+        <!--font awesome css  -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+
+        <!-- customized css -->
+        <link rel="stylesheet" href="css/style.css">
+
+
+
+
+    </head>
+    <body>
+    
+    
+    <!-- header -->
+    <div class="jumbotron header">
+        <h1>SAT, the leading share parking platform in Toronto</h1>
+        <p>we connect unused parking spot for your cost saving</p>
+        <p class="button">
+          <a class="btn btn-primary btn-lg" href="#!" role="button">Find My Spot</a>
+          <a class="btn btn-primary btn-lg" href="#!" role="button">List My Spot</a>
+        </p>
+    </div>
+    <!-- end of header -->
+    <!-- section-1: who is SAT -->
+    <div class="section-1">
+        <div class="container">
+            <div class="avatar"></div>
+            <div class="aboutus">
+                <p>Relying on our most advanced machine learning algorism, SAT is able to provide you with a mind-blowing experience when you are searching for affordable parking sapce in downtown Toronto</p>
+            </div>
+        </div>
+    </div>
+    <!-- end of section-1 -->
+    <!-- section-2: why you should choose SAT -->
+    <div class="section-2">
+        <div class="container">
+            <div class="section-2-heading">
+                <h2>Why you should choose SAT</h2>
+                <hr>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card special-skill-item border-0">
+                        <div class="card-header bg-transparent border-0"><i class="icon fas fa-piggy-bank"></i></div>
+                        <div class="card-body">
+                            <h3 class="card-title">Unbelievable Saving</h3>
+                            <p class="card-text">With SAT, you don't need to scarify about the parking cost in downtown anymore</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card special-skill-item border-0">
+                        <div class="card-header bg-transparent border-0"><i class="icon fab fa-gratipay"></i></div>
+                        <div class="card-body">
+                            <h3 class="card-title">Reliable</h3>
+                            <p class="card-text">With SAT, you get what you need from a simple and affordable parking spot, we care about the rest</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card special-skill-item border-0">
+                        <div class="card-header bg-transparent border-0"><i class="icon far fa-smile-wink"></i></div>
+                        <div class="card-body">
+                            <h3 class="card-title">Convenience</h3>
+                            <p class="card-text">With just a few clicks, get rid of the messy google map searching immediately</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end of section-2 -->
+    <!-- section-3 map -->
+    <div class="section-3">
+         <h2>Map of Toronto</h2> 
+         <hr>
+         <div class="row">
+             <div id="map" class="col-8 offset-2">
+             <!-- <img class="img-fluid" src="asset/img/map.png"> mock up map, can delete anytime -->
+            </div>
+         </div>
+
+
+
+    </div>
+
+    <!-- end of sectioni-3 -->
+    <!-- footer -->
+    <footer class="page-footer">
+        <div class="container">
+            <div class="links">
+                <a href="#">About us</a>
+                <a href="#">Contact us</a>
+                <a href="#">Banana</a>
+            </div>
+        </div>
+    </footer>
+    <!-- end of footer -->
+    <!-- jQuery, Popper.js, Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    
+    <!-- D3 Library -->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <!-- Plotly Library based on D3 -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <!-- leaflet -->
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+    <!-- customized js -->
+    <script src="static/js/config.js"></script>
+    <script src="static/js/logic.js"></script>
+    <script src="static/js/app.js"></script>
+    </body>
+</html>

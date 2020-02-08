@@ -1,0 +1,133 @@
+body {
+    background-color: white;
+}
+.header {
+    text-align: center;
+    background-image: url("../asset/img/header-bg.jpg")!important;
+    height: 50vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+    padding-top: 8rem;
+    margin-bottom: 0;
+}
+
+.header h1 {
+    font-size: 3rem;
+    padding-bottom: 1.5rem;
+    text-shadow: 2px 3px 5px rgba(0,0,0,0.5);
+}
+
+.header p {
+    font-size: 1.5rem;
+    padding-bottom: 3rem;
+    text-shadow: 0px 0px 1px rgba(255,255,255,0.7);
+}
+
+.header p a {
+    margin: 0 2rem;
+}
+
+.container {
+    padding-top: 4rem;
+}
+
+.avatar {
+    background-image: url(../asset/img/sat.jpg);
+    width: 150px;
+    height: 150px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: auto;
+    border-radius: 100px;
+    margin-bottom: 3rem;
+}
+
+.section-1 {
+    background-color: #eeeeee;
+}
+.aboutus {
+    font-size: 1.5rem;
+    text-align: center;
+    padding-bottom: 4rem;
+}
+
+/* section 2 */
+.section-2 {
+    padding-bottom: 4rem;
+}
+
+.section-2-heading {
+    text-align: center;
+}
+
+.section-2-heading hr {
+    border-top: 5px solid red;
+    width: 5rem;
+    padding-bottom: 2rem;
+}
+
+.card-header {
+    text-align: center;
+}
+.icon {
+    text-align: center;
+    font-size: 50px;
+    background-color: #0ea0ff;
+    color: #fff;
+    height: 70px;
+    width: 70px;
+    line-height: 69px;
+    display: inline-block;
+    border-radius: 50%;
+}
+
+.special-skill-item {
+    margin-bottom: 4rem;
+    text-align: center;
+  }
+
+  .card-title {
+      color: red;
+  }
+/* section 3 */
+
+.section-3 {
+    text-align: center;
+}
+
+.section-3 h1 {
+    padding-bottom: 2rem;
+}
+
+#map {
+    padding-bottom: 4rem;
+    height: 80vh;
+}
+
+#map img {
+    box-shadow: 10px 10px 5px grey;
+}
+
+.section-3 hr {
+    border-top: 5px solid red;
+    width: 5rem;
+    padding-bottom: 2rem;
+}
+
+/* footer */
+.page-footer {
+    padding-top: 2rem;
+    border-top: 1px solid #ddd;
+    text-align: center;
+    padding-bottom: 4rem;
+  }
+  
+.links a{
+    display: inline-block;
+    padding: 0 4rem;
+  }
+  
+
+  
