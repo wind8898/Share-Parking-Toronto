@@ -25,14 +25,13 @@ db = SQLAlchemy(app)
 def get_parking_spots():
     results = db.session.query(ParkingSpot.garage_id, ParkingSpot.rate_per_half_hour, ParkingSpot.lat, ParkingSpot.lng).all()
 
-
     garage_id = [result[0] for result in results]
     rate_per_half_hour = [result[1] for result in results]
     lat = [result[2] for result in results]
     lng = [result[3] for result in results]
 
     parking_data = [{
-       "garage_id": garage_id,
+        "garage_id": garage_id,
         "rate_per_half_hour": rate_per_half_hour,
         "lat": lat,
         "lng": lng
@@ -45,4 +44,4 @@ def home():
     return render_template("index.html")
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug = True)
