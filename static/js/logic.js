@@ -10,3 +10,18 @@ var myMap = L.map("map", {
     id: "mapbox.streets",
     accessToken: API_KEY
   }).addTo(myMap);
+
+
+  function addMarkers() {
+    /* data route */
+  var url = "/api/get_parking_spots";
+  d3.json(url).then(function(response) {
+
+    console.log(response);
+
+    //var data = response;
+    
+  });
+}
+
+addMarkers();
