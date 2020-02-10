@@ -25,7 +25,7 @@
     
     
     <!-- header -->
-    <div class="jumbotron header">
+    <div class="jumbotron header formbg">
         <h1>List Your Spot with SAT</h1>
         <p>we will connect your unused spot into easy money</p>
         <p class="button">
@@ -73,7 +73,7 @@
                   </div>
                   <div class="ml-auto mr-auto text-center">
                     <p class="button">
-                        <a class="btn btn-primary btn-lg" href="/sent" role="button">Submit</a>
+                        <a class="btn btn-primary btn-lg" href="/sent" role="button">List Now</a>
                     </p>
                   </div>
               </form>
@@ -86,14 +86,48 @@
 
     <!-- footer -->
     <footer class="page-footer">
-        <div class="container">
-            <div class="links">
-                <a href="#">About us</a>
-                <a href="#">Contact us</a>
-                <a href="#">Banana</a>
-            </div>
-        </div>
-    </footer>
+      <div class="container">
+          <div class="links row d-flex justify-content-around">
+              <a class="d-block" href="index.html">Homepage</a>
+              <div class="tooltip-wrap">
+                  <a href="#" >Contact us</a>
+                  <div class="tooltip-content">
+                    <p>We believe you will be fine. Don't contact us.</p>
+                  </div> 
+                </div>
+              <a class="d-block" href="#" data-toggle="modal" data-target="#banana">Banana</a>
+
+              <!-- Banana Modal -->
+              <div class="modal" id="banana" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-scrollable" role="document">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalCenteredLabel">13 Types of Bananas You Need to Know About</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                      </div>
+                      <div class="modal-body">
+                          <iframe height="300px" src="../asset/img/banana.png" width="100%" name="iframe_a"></iframe>
+                          <p><a href="https://www.popoptiq.com/types-of-bananas/" target="iframe_a">Please show me the different types of banana</a></p>
+                      </div>
+                      <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary" onclick="NewTab()">Awesome</button>
+                      <script> 
+                          function NewTab() { 
+                              window.open( 
+                                "https://www.walmart.ca/en/ip/banana/875805", "_blank"); 
+                          } 
+                      </script> 
+                      </div>
+                  </div>
+                  </div>
+              </div>
+
+          </div>
+      </div>
+  </footer>
     <!-- end of footer -->
     <!-- jQuery, Popper.js, Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>

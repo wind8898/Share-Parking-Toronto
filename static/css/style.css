@@ -3,7 +3,7 @@ body {
 }
 .header {
     text-align: center;
-    background-image: url("../../asset/img/header-bg.jpg")!important;
+    background-image: url("../../asset/img/header-bg.jpg");
     height: 60vh;
     background-position: center;
     background-repeat: no-repeat;
@@ -116,6 +116,15 @@ body {
     padding-bottom: 2rem;
 }
 
+.tab-content {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+
+.nav-item {
+    margin: 0 1rem;
+}
+
 /* footer */
 .page-footer {
     padding-top: 2rem;
@@ -130,10 +139,42 @@ body {
   }
   
 
+  .modal.show .modal-dialog {
+    max-width: 80%;
+}
+
+.tooltip-wrap {
+    position: relative;
+  }
+  .tooltip-wrap .tooltip-content {
+    display: none;
+    position: absolute;
+    bottom: 5%;
+    left: 5%;
+    right: 5%;
+    background-color: #fff;
+    padding: .5em;
+  }
+  .tooltip-wrap:hover .tooltip-content {
+    display: block;
+  }
+  
 
 
 /* form page */
-
+.page-footer {
+    font-size: 1.5rem;
+}
 .form {
     padding-bottom: 4rem;
+}
+
+label {
+    color: red;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.formbg {
+    background-image: url("../../asset/img/parking-bg.jpg")!important;
 }

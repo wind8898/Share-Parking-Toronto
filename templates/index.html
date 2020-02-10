@@ -38,7 +38,7 @@
     <div class="section-1">
         <div class="container">
             <div class="avatar"></div>
-            <div class="aboutus">
+            <div class="aboutus" id="aboutus">
                 <p>Relying on our most advanced machine learning algorism, SAT is able to provide you with a mind-blowing experience when you are searching for affordable parking sapce in downtown Toronto</p>
             </div>
         </div>
@@ -66,7 +66,7 @@
                         <div class="card-header bg-transparent border-0"><i class="icon fab fa-gratipay"></i></div>
                         <div class="card-body">
                             <h3 class="card-title">Reliable</h3>
-                            <p class="card-text">With SAT, you get what you need from a simple and affordable parking spot, we care about the rest</p>
+                            <p class="card-text">With SAT, you get what you need from a simple and affordable parking spot, we take care the rest</p>
                         </div>
                     </div>
                 </div>
@@ -87,24 +87,79 @@
     <div id="section-3" class="section-3">
          <h2>Map of Toronto</h2> 
          <hr>
-         <div class="row">
-             <div id="map" class="col-8 offset-2">
-             <!-- <img class="img-fluid" src="asset/img/map.png"> mock up map, can delete anytime -->
-            </div>
-         </div>
+            <ul class="nav nav-pills justify-content-center">
+                <li class="nav-item" class="active"><a class="nav-link active" data-toggle="pill" href="#tab1">Map View 1</a></li>
+                <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#tab2">Map View 2</a></li>
+                <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#tab3">Map View 3</a></li>
+            </ul>
 
-
-
+            <div class="tab-content">
+                <div id="tab1" class="tab-pane active col-8 offset-2">
+                  <h3>Map View 1 defualt</h3>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                  <div id="map">
+                    <!-- insert the map view here -->
+                  </div>
+                </div>
+                <div id="tab2" class="tab-pane fade col-8 offset-2">
+                    <h3>Map View 2</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <div id="map2">
+                      <!-- insert the map view here -->
+                    </div>
+                  </div>
+                  <div id="tab3" class="tab-pane fade col-8 offset-2">
+                    <h3>Map View 3</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <div id="map3">
+                      <!-- insert the map view here -->
+                    </div>
+                  </div>
+              </div>
     </div>
 
     <!-- end of sectioni-3 -->
     <!-- footer -->
     <footer class="page-footer">
         <div class="container">
-            <div class="links">
-                <a href="#">About us</a>
-                <a href="#">Contact us</a>
-                <a href="#">Banana</a>
+            <div class="links row d-flex justify-content-around">
+                <a class="d-block" href="#aboutus">About us</a>
+                <div class="tooltip-wrap">
+                    <a href="#" >Contact us</a>
+                    <div class="tooltip-content">
+                      <p>We believe you will be fine. Don't contact us.</p>
+                    </div> 
+                  </div>
+                <a class="d-block" href="#" data-toggle="modal" data-target="#banana">Banana</a>
+
+                <!-- Banana Modal -->
+                <div class="modal" id="banana" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-scrollable" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalCenteredLabel">13 Types of Bananas You Need to Know About</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                            <iframe height="300px" src="../asset/img/banana.png" width="100%" name="iframe_a"></iframe>
+                            <p><a href="https://www.popoptiq.com/types-of-bananas/" target="iframe_a">Please show me the different types of banana</a></p>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" onclick="NewTab()">Awesome</button>
+                        <script> 
+                            function NewTab() { 
+                                window.open( 
+                                  "https://www.walmart.ca/en/ip/banana/875805", "_blank"); 
+                            } 
+                        </script> 
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </footer>
