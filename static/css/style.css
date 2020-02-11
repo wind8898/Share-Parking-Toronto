@@ -3,7 +3,7 @@ body {
 }
 .header {
     text-align: center;
-    background-image: url("asset/img/header-bg.jpg");
+    background-image: url("../asset/img/header-bg.jpg");
     height: 60vh;
     background-position: center;
     background-repeat: no-repeat;
@@ -50,7 +50,12 @@ body {
 .aboutus {
     font-size: 1.5rem;
     text-align: center;
+    padding-bottom: 2rem;
+}
+
+.video {
     padding-bottom: 4rem;
+
 }
 
 /* section 2 */
@@ -176,5 +181,5 @@ label {
 }
 
 .formbg {
-    background-image: url("asset/img/parking-bg.jpg")!important;
+    background-image: url("../asset/img/parking-bg.jpg")!important;
 }
