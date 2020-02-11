@@ -50,21 +50,24 @@ def sent():
         location = geolocator.geocode(location)
 
         address = location.address
-        lat = location.latitude
-        lng = location.longitude
+        lat = float(location.latitude)
+        lng = float(location.longitude)
 
 
-        name = request.form["name"]
+        garage_id = request.form["cell"]
         start_date = request.form["startdate"]
         start_time = request.form["starttime"]
         end_date = request.form["enddate"]
         end_time = request.form["endtime"]
         rate_per_half_hour = request.form["price"]
         cell = request.form["cell"]
-
-
-
-        record = ParkingSpot(name=name, address=address, lat=lat, lng=lng, start_date=start_date, start_time=start_time, end_date=end_date, end_time=end_time, rate_per_half_hour=rate_per_half_hour, cell=cell)
+        cust_id = request.form["cell"]
+        parking_type = "public"
+        duration_type = "long-term"
+        capacity = request.form["cell"]
+        carpark_type_str = "Garage"
+        
+        record = ParkingSpot(garage_id=garage_id, address=address, lat=lat, lng=lng, start_date=start_date, start_time=start_time, end_date=end_date, end_time=end_time, rate_per_half_hour=rate_per_half_hour, cell=cell, cust_id=cust_id, duration_type=duration_type, capacity=capacity, parking_type=parking_type, carpark_type_str=carpark_type_str)
 
         db.session.add(record)
         db.session.commit()
@@ -96,6 +99,8 @@ def get_parking_spots():
 @app.route("/")
 def home():
     return render_template("index.html")
+
+
 
 if __name__ == "__main__":
     app.run(debug = True)
