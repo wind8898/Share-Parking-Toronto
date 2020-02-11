@@ -110,11 +110,11 @@ body {
     padding-bottom: 4rem;
     height: 80vh;
 }
-
+/*
 #map img {
-    box-shadow: 10px 10px 5px grey;
+    box-shadow: 10px 10px 5px;
 }
-
+*/
 .section-3 hr {
     border-top: 5px solid red;
     width: 5rem;
