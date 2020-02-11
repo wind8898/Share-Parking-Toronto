@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>  
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>whereAmI button</title>  
+    
+    <!-- Leaflet CSS & JS -->  
+    <link rel="stylesheet" type="text/css" href="leaflet.css">
+    <script type="text/javascript" src="jquery.min.js"></script>
+    
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+    integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+    crossorigin=""></script>
+    </head>
+    <body>
+    <p><button onclick="whereAmI()">Where am I</button></p>  
+        <!-- The div where we will inject our map -->   
+        <div id="demo"></div>
+        <div id="map" style="width: 800px; height: 440px; border: 1px solid #AAA;"></div> 
+
+        <!-- API key -->  
+        <script type="text/javascript" src="config.js"></script>  
+        <!-- Our JS -->  
+        <script type="text/javascript" src="logic.js"></script>
+
+        }
+    </body>
+    </html>

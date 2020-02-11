@@ -47,12 +47,12 @@ parkingMarkers = [];
   d3.json(url).then(function(response) {
 
     console.log(response);
-    console.log(response[0].length);
-    console.log(response[0].address.length);
-    console.log(response[0].lat[3]);
+//    console.log(response[0].length);
+  //  console.log(response[0].address.length);
+    //console.log(response[0].lat[3]);
 
-    var coordinates = [];
-    var hoverText = [];
+    //var coordinates = [];
+    //var hoverText = [];
 
   // Loop through the cities array and create one marker for each city, bind a popup containing its name and population add it to the map
   /*for (var i = 0; i < response[0].address.length; i++) {
