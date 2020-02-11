@@ -3,7 +3,7 @@ body {
 }
 .header {
     text-align: center;
-    background-image: url("../asset/img/header-bg.jpg");
+    background-image: url("https://lp.yorkvilleu.ca/rs/961-UXG-821/images/header-bg.jpg");
     height: 60vh;
     background-position: center;
     background-repeat: no-repeat;
@@ -34,7 +34,7 @@ body {
 }
 
 .avatar {
-    background-image: url('../asset/img/sat.jpg');
+    background-image: url('https://lp.yorkvilleu.ca/rs/961-UXG-821/images/sat.jpg');
     width: 150px;
     height: 150px;
     background-size: cover;
@@ -181,5 +181,5 @@ label {
 }
 
 .formbg {
-    background-image: url("../asset/img/parking-bg.jpg")!important;
+    background-image: url("https://lp.yorkvilleu.ca/rs/961-UXG-821/images/parking-bg.jpg")!important;
 }
