@@ -25,19 +25,19 @@ var myMap = L.map("map", {
 
     console.log(response);
     console.log(response[0].length);
-    console.log(response[0].garage_id.length);
+    console.log(response[0].address.length);
     console.log(response[0].lat[3]);
 
     var coordinates = [];
     var hoverText = [];
 
   // Loop through the cities array and create one marker for each city, bind a popup containing its name and population add it to the map
-  for (var i = 0; i < response[0].garage_id.length; i++) {
+  for (var i = 0; i < response[0].address.length; i++) {
     //if(response[0].lat[i]  response[0].lng[i]])
     //coordinates.push([response[0].lat[i], response[0].lng[i]]);
     coordinates = [response[0].lat[i], response[0].lng[i]];
     L.marker(coordinates)
-      .bindPopup("<h3>Garage ID:" + response[0].garage_id[i] + "</h3> <hr> <h3>Price per 30 min: " + /*response[0].price_per_half_hour[i]+*/ "</h3>")
+      .bindPopup("<h3>Address:" + response[0].address[i] + "</h3> <hr> <h3>Price per 30 min: " + esponse[0].price_per_half_hour[i]+ "</h3>")
       .addTo(myMap);
     //hoverText.push("<h1>Garage ID:" + response[0].garage_id[i] + "</h1> <hr> <h3>Price per 30 min: " + response[0].price_per_half_hour[i] + "</h3>");
   }

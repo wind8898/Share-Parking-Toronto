@@ -1,5 +1,6 @@
 import os
 from flask_sqlalchemy import SQLAlchemy
+
 from model import *
 
 from flask import (
@@ -8,6 +9,8 @@ from flask import (
     jsonify,
     request,
     redirect)
+
+from geopy.geocoders import Nominatim
 
 
 app = Flask(__name__)
@@ -19,27 +22,54 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False # silence the deprecation w
 
 db = SQLAlchemy(app)
 
+@app.route('/form.html')
+
+def form():
+    return render_template("form.html")
+
+
 @app.route("/send", methods=["GET", "POST"])
 def send():
     if request.method == "POST":
 
-        garage_id = getNextGarageID() #function call to get next id
-        address = request.form["address"]
-        lat = request.form["lat"] #google api from location
-        lng = request.form["lng"] #google api from location
-        rate_per_half_hour = request.form["rate_per_half_hour"] 
-        carpark_type_str = request.form["carpark_type_str"]
-        capacity = request.form["capacity"]
-        start_date_time = request.form["start_date_time"]
-        start_date = request.form["start_date"]
-        start_time = request.form["start_time"]
-        end_date_time = request.form["end_date_time"]
-        end_date = request.form["end_date"]
-        end_time = request.form["end_time"]
-        duration_type = request.form["duration_type"]
-        parking_type = request.form["parking_type"]
-        cust_id = getCustomerID(request.form["cell"])
+        max_garage_id = db.session.query(db.func.max(ParkingSpot.garage_id)).one()
+        next_garage_id = max_garage_id[0] + 1
+
         cell = request.form["cell"]
+        
+        cust_check = db.session.query(ParkingSpot.cust_id).filter(ParkingSpot.cell == cell).exists()
+        
+        #if cust_check:
+        #    cust_id = db.session.query(ParkingSpot.cust_id).filter(ParkingSpot.cell == cell).one()
+        #    next_cust_id = cust_id[0]
+        #else:
+        max_cust_id = db.session.query(db.func.max(ParkingSpot.cust_id)).one()
+        next_cust_id = max_cust_id[0] + 1
+
+
+        #  convert the address to lat, lon
+        location = request.form["location"]
+        geolocator = Nominatim(user_agent="share-parking-toronto")
+        location = geolocator.geocode(location)
+
+        address = location.address
+        lat = float(location.latitude)
+        lng = float(location.longitude)
+
+        garage_id = next_garage_id
+        address = request.form["location"]
+        rate_per_half_hour = request.form["price"] 
+        carpark_type_str = "outdoor"
+        capacity = 0
+        start_date_time = "" #request.form["startdate"] + request.form["starttime"]
+        start_date = request.form["startdate"]
+        start_time = request.form["starttime"]
+        end_date_time = "" #request.form["enddate"] + request.form["endtime"]
+        end_date = request.form["enddate"]
+        end_time = request.form["endtime"]
+        duration_type = "short-term"
+        parking_type = "public"
+        cust_id = next_cust_id
         
         parking_spot = ParkingSpot(garage_id=garage_id, address=address, lat=lat, lng=lng, rate_per_half_hour=rate_per_half_hour,
                                     carpark_type_str=carpark_type_str, capacity=capacity, start_date_time=start_date_time, start_date=start_date, 
@@ -54,15 +84,15 @@ def send():
 
 @app.route("/api/get_parking_spots")
 def get_parking_spots():
-    results = db.session.query(ParkingSpot.garage_id, ParkingSpot.rate_per_half_hour, ParkingSpot.lat, ParkingSpot.lng).all()
+    results = db.session.query(ParkingSpot.address, ParkingSpot.rate_per_half_hour, ParkingSpot.lat, ParkingSpot.lng).all()
 
-    garage_id = [result[0] for result in results]
+    address = [result[0] for result in results]
     rate_per_half_hour = [result[1] for result in results]
     lat = [result[2] for result in results]
     lng = [result[3] for result in results]
 
     parking_data = [{
-        "garage_id": garage_id,
+        "address": address,
         "rate_per_half_hour": rate_per_half_hour,
         "lat": lat,
         "lng": lng
@@ -78,11 +108,4 @@ if __name__ == "__main__":
     app.run(debug = True)
 
 
-def getNextGarageID():
-    max_id = db.session.query(db.func.max(ParkingSpot.garage_id)).all()
-    print(max_id)
 
-def getCustomerID(cell):
-    cust_id = db.session.query(ParkingSpot.cust_id).filter(ParkingSpot.cell == cell).all()
-    #if blank generate new id
-    
