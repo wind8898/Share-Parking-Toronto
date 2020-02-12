@@ -60,11 +60,11 @@ def send():
         address = request.form["location"]
         rate_per_half_hour = request.form["price"] 
         carpark_type_str = "outdoor"
-        capacity = 0
-        start_date_time = "" #request.form["startdate"] + request.form["starttime"]
+        capacity = "0"
+        start_date_time = request.form["startdate"] #+ request.form["starttime"]
         start_date = request.form["startdate"]
         start_time = request.form["starttime"]
-        end_date_time = "" #request.form["enddate"] + request.form["endtime"]
+        end_date_time = request.form["enddate"] #+ request.form["endtime"]
         end_date = request.form["enddate"]
         end_time = request.form["endtime"]
         duration_type = "short-term"
@@ -84,18 +84,23 @@ def send():
 
 @app.route("/api/get_parking_spots")
 def get_parking_spots():
-    results = db.session.query(ParkingSpot.address, ParkingSpot.rate_per_half_hour, ParkingSpot.lat, ParkingSpot.lng).all()
+    results = db.session.query(ParkingSpot.address, ParkingSpot.rate_per_half_hour, ParkingSpot.lat, ParkingSpot.lng, ParkingSpot.start_date_time, ParkingSpot.end_date_time).all()
 
     address = [result[0] for result in results]
     rate_per_half_hour = [result[1] for result in results]
     lat = [result[2] for result in results]
     lng = [result[3] for result in results]
+    start_date_time = [result[4] for result in results]
+    end_date_time = [result[5] for result in results]
+    
 
     parking_data = [{
         "address": address,
         "rate_per_half_hour": rate_per_half_hour,
         "lat": lat,
-        "lng": lng
+        "lng": lng,
+        "startdatetime": start_date_time,
+        "enddatetime": end_date_time
     }]
 
     return jsonify(parking_data)
