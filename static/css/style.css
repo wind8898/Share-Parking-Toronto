@@ -110,6 +110,11 @@ body {
     padding-bottom: 4rem;
     height: 80vh;
 }
+
+#map2 {
+    padding-bottom: 4rem;
+    height: 80vh;
+}
 /*
 #map img {
     box-shadow: 10px 10px 5px;
@@ -177,7 +182,9 @@ body {
 label {
     color: red;
     font-size: 1rem;
-    font-weight: 700;
+    font-weight: 500;
+    text-align: left;
+    line-height: 1.5rem;
 }
 
 .formbg {
@@ -207,4 +214,10 @@ th {
 
 .tableRow:hover {
     background-color: #73b6e6;
+}
+
+
+/* tooltip */
+.leaflet-tooltip {
+    font-size:1rem;
 }
