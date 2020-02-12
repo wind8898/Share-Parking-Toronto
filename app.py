@@ -82,7 +82,8 @@ def send():
         # render the data into html for display input location on the map
         data = {
             "lat" : lat,
-            "lng" : lng
+            "lng" : lng,
+            "rate" : rate_per_half_hour
         }
 
         return render_template("form.html", data=data)

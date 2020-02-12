@@ -6,9 +6,11 @@ var myMap = L.map("curr_loc_map", {
 
 var mylat = document.getElementById("lat").innerHTML
 var mylong = document.getElementById("lng").innerHTML
+var rate = document.getElementById("rate").innerHTML
+
 console.log(mylat)
 console.log(mylong)
-
+console.log(rate)
 
 L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
   attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
@@ -18,7 +20,7 @@ L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
 }).addTo(myMap);
 
 L.marker([mylat, mylong])
-.bindPopup("This is your parking spot")
+.bindPopup("Your pakring Spot is here and your rate is: " + rate + " CAD/30mins")
 .addTo(myMap);
 
 
