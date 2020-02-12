@@ -25,7 +25,8 @@ db = SQLAlchemy(app)
 @app.route('/form.html')
 
 def form():
-    return render_template("form.html")
+    data = "",
+    return render_template("form.html", data=data)
 
 
 @app.route("/send", methods=["GET", "POST"])
@@ -77,9 +78,14 @@ def send():
                                     duration_type=duration_type, parking_type=parking_type,cust_id=cust_id, cell=cell)
         db.session.add(parking_spot)
         db.session.commit()
-        return redirect("/", code=302)
 
-    return render_template("form.html")
+        # render the data into html for display input location on the map
+        data = {
+            "lat" : lat,
+            "lng" : lng
+        }
+
+        return render_template("form.html", data=data)
 
 
 @app.route("/api/get_parking_spots")
