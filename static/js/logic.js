@@ -41,7 +41,7 @@ function addTable(response){
   data = response[0];
   table_data = [];
   
-  for (i=0; i<=5; i++)
+  for (i=0; i<=data.address.length; i++)
   {
     table_data.push([data.address[i], 
                     data.rate_per_half_hour[i], 
@@ -98,11 +98,19 @@ function addTable(response){
   d3.json(url).then(function(response) {
 
     addMarkers(response);
+    //addTable(response);  
+  
+  });
+
+  var url = "/api/get_last_10_spots";
+  d3.json(url).then(function(response) {
+
+    console.log(response);
+    //addMarkers(response);
     addTable(response);  
   
   });
 
-  
 
 //addMarkers();
 console.log("parkingmarkers");

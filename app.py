@@ -112,6 +112,30 @@ def get_parking_spots():
 
     return jsonify(parking_data)
 
+@app.route("/api/get_last_10_spots")
+def get_last_10_spots():
+    results = db.session.query(ParkingSpot.address, ParkingSpot.rate_per_half_hour, ParkingSpot.lat, ParkingSpot.lng, ParkingSpot.start_date_time, ParkingSpot.end_date_time).order_by(ParkingSpot.garage_id.desc()).limit(10)
+
+    address = [result[0] for result in results]
+    rate_per_half_hour = [result[1] for result in results]
+    lat = [result[2] for result in results]
+    lng = [result[3] for result in results]
+    start_date_time = [result[4] for result in results]
+    end_date_time = [result[5] for result in results]
+    
+
+    parking_data = [{
+        "address": address,
+        "rate_per_half_hour": rate_per_half_hour,
+        "lat": lat,
+        "lng": lng,
+        "startdatetime": start_date_time,
+        "enddatetime": end_date_time
+    }]
+
+    return jsonify(parking_data)
+
+
 @app.route("/")
 def home():
     return render_template("index.html")
