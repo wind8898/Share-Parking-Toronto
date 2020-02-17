@@ -30,7 +30,7 @@ It was a cold Saturday in downtown Toronto. Zepa was driving around the city loo
 - Sell your parking spot and list on the map
 - Check your surrounding Green Parking Spots for price reference 
 
-![S1](/Users/steven.w/Dropbox/Data_Boot_Camp/Share-Parking-Toronto/S1.png)
+![S1](S1.png)
 
-![S2](/Users/steven.w/Dropbox/Data_Boot_Camp/Share-Parking-Toronto/S2.png)
+![S2](S2.png)
 
