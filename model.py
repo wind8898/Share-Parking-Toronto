@@ -24,3 +24,14 @@ class ParkingSpot(db.Model):
 
     def __repr__(self):
         return '<ParkingSpot %r>' % (self.address)
+
+
+class NearbyParking(db.Model):
+    __tablename__ = 'nearby_parking'
+
+    Location_Name = db.Column(db.String(64), primary_key = True)
+    Location_Address = db.Column(db.String(64))
+    Location_Price_Hour = db.Column(db.String(64))
+    lat = db.Column(db.Float)
+    lng = db.Column(db.Float)
+

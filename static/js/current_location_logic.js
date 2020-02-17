@@ -3,6 +3,9 @@ var myMap = L.map("curr_loc_map", {
     zoom: 13
   });
 
+// var mylat = 43.668094;
+// var mylong =-79.397544;
+// var rate = 2;
 
 var mylat = document.getElementById("lat").innerHTML
 var mylong = document.getElementById("lng").innerHTML
@@ -19,57 +22,47 @@ L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
   accessToken: API_KEY
 }).addTo(myMap);
 
-L.marker([mylat, mylong])
-.bindPopup("Your pakring Spot is here and your rate is: " + rate + " CAD/30mins")
-.addTo(myMap);
+var SpotIcon = L.icon({
+  iconUrl: '../static/asset/img/smile.png',
+  iconSize:     [36, 36]
+  // iconAnchor:   [22, 94], 
+  // popupAnchor:  [-3, -76] 
+})
+
+L.marker([mylat, mylong],  {icon: SpotIcon})
+.bindPopup("<h6>Your are here, your rate is: " + rate*2 + " CAD/Hour</h6>")
+.addTo(myMap).openPopup();
 
 
-// var map = L.map("curr_loc_map").setView([43.668094, -79.397544], 13);
+// function displaynearby() {
 
-// function whereAmI() {
-//     var myresult = document.getElementById("demo");
-//     if (!navigator.geolocation) {
-//         myresult.innerHTML = "<p>Geolocation is not supported by your browser</p>";
-//         return;
-//     }
-//     function success(position) {
-//         var latitude = position.coords.latitude;
-//         var longitude =position.coords.longitude;
-//         myresult.innerHTML = "<p>Latitude is " + latitude + "<br>Longitude is " + longitude + "</p>";
-//         makeMyMap(latitude, longitude);
-//     }
-//     function error() {
-//         myresult.innerHTML = "Unable to retrieve your location";
-//     }
-//     myresult.innerHTML = "<p>Locating...</p>";
-//     navigator.geolocation.getCurrentPosition(success, error);
-//     }
+//   var url = "/api/get_nearby_spots";
+//   d3.json(url).then(function(response) {
+//   console.log(response)
+//   NearbyMarkers(response);
+  
+// });
 
-// function makeMyMap(mylat,mylong) {
-// L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-// attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-// maxZoom: 18,
-// id: 'mapbox/streets-v11',
-// accessToken: API_KEY
-// }).addTo(map);
- 
-// L.marker([mylat,mylong]).addTo(map)
-//         .bindPopup("<b>You are here!</b>").openPopup();
-//     L.circle([mylat,mylong], 500, {
-//         color: 'red',
-//         fillColor: '#f2d5df',
-//         fillOpacity: 0.2
-//     }).addTo(map).bindPopup("");
-// var popup = L.popup();
-
-// function onMapClick(e) {
-//     popup
-//         .setLatLng(e.latlng)
-//         .setContent("You clicked the map at " + e.latlng.toString())
-//         .openOn(map);
 // }
-// map.on("click", onMapClick);
 
-// };
+var url = "/api/get_nearby_spots";
 
-// whereAmI();
+d3.json(url).then(function(response) {
+  console.log(response)
+  NearbyMarkers(response);
+  
+});
+
+
+
+function NearbyMarkers(response){
+  // Loop through the cities array and create one marker for each city, bind a popup containing its name and population add it to the map
+  for (var i = 0; i < response[0].Location_Address.length; i++) {
+      
+    coordinates = [response[0].lat[i], response[0].lng[i]];
+      L.marker(coordinates)
+      .bindPopup(`<h6>${response[0].Location_Name[i]} </h6><br><h6> Rate : ${response[0].Location_Price_Hour[i]} per hour </h6><br><h6> Address : ${response[0].Location_Address[i]} </h6>`)
+      .addTo(myMap);
+  } 
+}
+

@@ -12,15 +12,27 @@ from flask import (
 
 from geopy.geocoders import Nominatim
 
+# import library for the web scraping
+import pandas as pd
+import sqlalchemy
+from sqlalchemy.ext.automap import automap_base
+from sqlalchemy.orm import Session
+from sqlalchemy import create_engine, inspect, func
+from splinter import Browser
+import time
+import re
 
 app = Flask(__name__)
 
 DB_URL = 'postgresql://eynjeleywopzpd:faa6c1ed8f60c969b72d838fe60e02cc5e2bb3bfc614b01e5449db9f6c3b1dee@ec2-34-235-108-68.compute-1.amazonaws.com:5432/dcuv8ruasf6mj0'
 
+engine = create_engine(DB_URL, echo=False)
+
 app.config['SQLALCHEMY_DATABASE_URI'] = DB_URL
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False # silence the deprecation warning
 
 db = SQLAlchemy(app)
+
 
 @app.route('/form.html')
 
@@ -49,16 +61,16 @@ def send():
 
 
         #  convert the address to lat, lon
-        location = request.form["location"]
-        geolocator = Nominatim(user_agent="share-parking-toronto")
-        location = geolocator.geocode(location)
+        geolocator = Nominatim(user_agent="parking")
+        addr = request.form["location"]
 
-        address = location.address
+        location = geolocator.geocode(addr)
         lat = float(location.latitude)
         lng = float(location.longitude)
-
+        address = location.address
+        
         garage_id = next_garage_id
-        address = request.form["location"]
+        # address = request.form["location"]
         rate_per_half_hour = request.form["price"] 
         carpark_type_str = "outdoor"
         capacity = "0"
@@ -86,7 +98,102 @@ def send():
             "rate" : rate_per_half_hour
         }
 
+        # Call the scrape_parking_info
+        try:
+            scrape_parking_info(address)
+        except:
+            pass
+
         return render_template("form.html", data=data)
+
+# web data scraping from bestparking.com to obtain the nearby parking spot around the user's input address
+
+# fucntion to clean the string 
+def cleanstring(mystring):
+    my_regex = "\(.*\)|\s-\s.*"
+    result = re.sub(my_regex, ", Toronto", mystring)
+    return result
+
+def init_browser():
+    executable_path = {"executable_path": "/usr/local/bin/chromedriver"}
+    return Browser("chrome", **executable_path, headless=True)
+
+def scrape_parking_info(address):
+# open bestparking website and input the enquery address    
+    browser = init_browser()
+    url = "https://www.bestparking.com/"
+    browser.visit(url)
+    time.sleep(1)
+    browser.find_by_id('home-autocomplete').fill(address)
+    time.sleep(1)
+    button = browser.find_by_css('.location-suggestion-main-text').first
+    button.click()
+    time.sleep(1)
+    
+#   Secure the data from the open search page 
+    location_name = browser.find_by_css('.location-name')
+    loc_address = browser.find_by_css('.address')
+    location_price = browser.find_by_css('.listing-price')
+    
+    location_name_array = []
+    loc_address_array = []
+    location_price_array = []
+    lat_array = []
+    lng_array = []
+
+    geolocator = Nominatim(user_agent="nearby-parking")
+    
+#   List the 5 parking spaces nearby
+    for i in range(5):
+        location = geolocator.geocode(cleanstring(loc_address[i].text))
+        try:
+            lat = float(location.latitude)
+            lng = float(location.longitude)
+        except:
+            pass
+        else:
+            loc_address_array.append(cleanstring(loc_address[i].text))
+            location_name_array.append(location_name[i].text)
+            location_price_array.append(location_price[i].text) 
+            lat_array.append(lat)
+            lng_array.append(lng)
+            time.sleep(0.3)
+        
+    nearby_df = pd.DataFrame(
+    {'Location_Name':location_name_array, 
+     'Location_Address':loc_address_array, 
+     'Location_Price_Hour':location_price_array,
+     'lat':lat_array,
+     'lng':lng_array
+     })
+
+#  Export to sql database   
+    nearby_df.to_sql('nearby_parking', con=engine, if_exists='replace', index=False)
+    
+    return nearby_df
+
+@app.route("/api/get_nearby_spots")
+def get_nearby_spots():
+    results = db.session.query(NearbyParking.Location_Name, NearbyParking.Location_Address, NearbyParking.Location_Price_Hour, NearbyParking.lat, NearbyParking.lng).all()
+
+    Location_Name = [result[0] for result in results]
+    Location_Address = [result[1] for result in results]
+    Location_Price_Hour = [result[2] for result in results]
+    lat = [result[3] for result in results]
+    lng = [result[4] for result in results]
+
+    nearby_parking_data = [
+        {
+            "Location_Name": Location_Name,
+            "Location_Address": Location_Address,
+            "Location_Price_Hour" : Location_Price_Hour,
+            "lat": lat,
+            "lng": lng
+        }
+    ]
+
+    return jsonify(nearby_parking_data)
+
 
 
 @app.route("/api/get_parking_spots")

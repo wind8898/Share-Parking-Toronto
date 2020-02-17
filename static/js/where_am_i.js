@@ -1,6 +1,9 @@
 
 
-var map = L.map("map3").setView([43.668094, -79.397544], 13);
+var map = L.map("map3", {
+    center: [43.668094, -79.397544],
+    zoom: 13
+  });
 
 function whereAmI() {
     var myresult = document.getElementById("demo");
@@ -44,8 +47,28 @@ function onMapClick(e) {
         .setContent("You clicked the map at " + e.latlng.toString())
         .openOn(map);
 }
-map.on("click", onMapClick);
 
+map.on("click", onMapClick);
 };
 
 whereAmI();
+/* data route */
+var url_near = "/api/get_parking_spots";
+
+function nearbyparking(response){
+    // Loop through the cities array and create one marker for each city, bind a popup containing its name and population add it to the map
+    for (var i = 0; i < response[0].address.length; i++) {
+        
+      coordinates = [response[0].lat[i], response[0].lng[i]];
+      //parkingMarkers.push(
+        L.marker(coordinates)
+        .bindPopup("<h3>Address:" + response[0].address[i] + "</h3> <hr> <h3>Price per 30 min: " + response[0].rate_per_half_hour[i]+ " CAD </h3>")
+        .addTo(map);
+      //)
+    } 
+  }
+
+d3.json(url_near).then(function(response) {
+    console.log(response);
+    nearbyparking(response);  
+});

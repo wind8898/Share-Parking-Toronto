@@ -34,13 +34,22 @@
     
     
     <!-- header -->
-    <div class="jumbotron header">
-        <h1>Welcome to SAT, the leading share parking platform in Toronto</h1>
-        <p>we connect unused parking spots for your cost saving</p>
-        <p class="button">
-          <a class="btn btn-primary btn-lg" href="#section-3" role="button">Find a Spot</a>
-          <a class="btn btn-primary btn-lg" href="form.html" role="button">List my Spot</a>
-        </p>
+    <div class="jumbotron header row">
+        <div class="header-text-wrapper col-12 col-md-6">
+            <h1>Welcome to SAT, the leading share parking platform in Toronto</h1>
+            <p>we connect unused parking spots for your cost saving</p>
+            <p class="header_button">
+              <a class="btn btn-primary btn-lg" href="#section-3" role="button">Find a Spot</a>
+              <a class="btn btn-primary btn-lg" href="form.html" role="button">List my Spot</a>
+            </p>
+        </div>
+        <div class="video-wrapper col-12 col-md-6 row justify-content-center">
+                <video class="video" autoplay>
+                    <source src="../static/asset/video/video.mp4" type="video/mp4">
+                </video>
+                <!-- <button class="btn btn-outline-secondary btn-sm">Stop / Continue</button> -->
+        </div>
+
     </div>
     <!-- end of header -->
     <!-- section-1: who is SAT -->
@@ -48,15 +57,32 @@
         <div class="container">
             <div class="avatar"></div>
             <div class="aboutus" id="aboutus">
-                <p>SAT relies on the most advanced machine learning algorithms to provide you affordable parking spaces in downtown Toronto. SAT also provides you with a quick and easy way to get money back from unused hours or daily parking.</p>
+                <p>SAT was created in 2019. We are a group of very diverse individuals who have formed together in a SUPER AWESOME unity to bring you with a quick and easy way to get money back from unused hours or daily parking.</p>
             </div>
-            <div class="row justify-content-center">
-                <video class="video" width="800" height="600" controls>
+            <div class="video-wrapper-2 col-12 col-md-6 row justify-content-center">
+                <video class="video" controls autoplay>
                     <source src="../static/asset/video/video.mp4" type="video/mp4">
-                  </video>
-            </div>
+                </video>
+                <!-- <button class="btn btn-outline-secondary btn-sm">Stop / Continue</button> -->
+        </div>
         </div>
     </div>
+
+
+    <!-- insert new section -->
+
+    <div class="section-part-3 row">
+        <div class="section-3-img col-12 col-md-4 align-self-md-end">
+            <img alt="Andrew_Barnsley_image" class="img-fluid testimonial-image ml-4" src="../static/asset/img/zepa.png">
+        </div>
+        <div class="section-3-copy col-12 col-md-8">
+            <p class="testimonial">It was a cold Saturday in downtown Toronto. Zepa was driving around the city looking for parking for school . She came across a safe secure parking lot that was affordable . 10 Dollars for 24hrs ! After class was done she realized that only 4 hours of her parking ticket have been consumed. What a waste ! At this point she turned on her phone downloaded SAT . In minutes she posted her parking ticket for $5.00 for the remaining hours . In seconds it was sold . Not only did she make some money but the remaining hours did not go to waste.
+            </p>
+            <p class="testimonial-name">Zepa's Story</p>
+        </div>
+     </div>
+
+     <!-- end of new section -->
     <!-- end of section-1 -->
     <!-- section-2: why you should choose SAT -->
     <div class="section-2">
@@ -99,30 +125,37 @@
     <!-- end of section-2 -->
     <!-- section-3 map -->
     <div id="section-3" class="section-3">
-         <h2>Map of Toronto</h2> 
+         <h2>Find Your Parking Spot</h2> 
          <hr>
             <ul class="nav nav-pills justify-content-center">
-                <li class="nav-item" class="active"><a class="nav-link active" data-toggle="pill" href="#tab1">Map View 1</a></li>
-                <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#tab2">Map View 2</a></li>
-                <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#tab3">Map View 3</a></li>
+                <li class="nav-item" class="active"><a class="nav-link active" data-toggle="pill" href="#tab1">All Spots</a></li>
+                <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#tab2" onclick="window.setTimeout(function(){tableMap.invalidateSize();}, 400)">Recent Spots</a></li>
+                <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#tab3" onclick="window.setTimeout(function(){map.invalidateSize();}, 400)">Spots Near Me</a></li>
             </ul>
 
             <div class="tab-content">
                 <div id="tab1" class="tab-pane active col-8 offset-2">
-                  <h3>Map View 1</h3>
+                  <h3>All the avaiable parking spots in downtown Toronto</h3>
                   <div id="map">
                     <!-- insert the map view here -->
                   </div>
                 </div>
-                <div id="tab2" class="tab-pane fade col-8 offset-2">
-                    <h3>Map View 2</h3>
-                    <div id="map2">
-                      <!-- insert the map view here -->
+                <div id="tab2" class="tab-pane fade col-10 offset-1">
+                    <h3>The most recent listing parking spots</h3>
+                    <div class="row">
+                        <div class="tab2_map_container col-12 col-lg-6">
+                            <div id="map2">
+                                <!-- insert the map view here -->
+                            </div>
+                        </div>
+                        <div id="tab2_table" class="col-12 col-lg-6">
+
+                        </div>
                     </div>
-                  </div>
+                </div>
                   <div id="tab3" class="tab-pane fade col-8 offset-2">
-                    <h3>Map View 3</h3>
-                    <div id="demo"></div>
+                    <h3>Avaiable parking spots near me</h3>
+                    <div id="demo" style="display: none;"></div>
                     <div id="map3">
                       <!-- insert the map view here -->
                     </div>
@@ -194,5 +227,9 @@
     <script src="../static/js/logic.js"></script>
     
     <script src="../static/js/where_am_i.js"></script>
+    <!-- style the table -->
+    <script>
+
+    </script>
     </body>
 </html>

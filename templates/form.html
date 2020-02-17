@@ -30,7 +30,7 @@
     
     
     <!-- header -->
-    <div class="jumbotron header formbg">
+    <div class="jumbotron header formbg" style="text-align: center;">
         <h1>List Your Spot with SAT</h1>
         <p>we will connect your unused spot into easy money</p>
         <p class="button">
@@ -54,12 +54,13 @@
 
 
         <!-- The div where we will inject our map -->   
-        <div class="col-10 offset-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4 pt-4" id="demo"></div>
-        <div class="col-10 offset-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4" id="curr_loc_map" style="width: 800px; height: 440px; border: 1px solid #AAA;"></div> 
-        <!--button onclick="whereAmI()">Where am I</button></p>  -->
-        
-        <div class="form row pt-4">
-            <form class="col-10 offset-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4 row" method="POST" action="/send" role="form">
+        <div class="row">
+          <div class="map_container col-12 col-lg-6">
+            <div class="pt-4" id="demo"></div>
+            <div class="col-10 offset-1" id="curr_loc_map" style="width: 800px; height: 440px; border: 1px solid #AAA;"></div> 
+          </div>
+          <div class="form row pt-4 col-12 col-lg-6">
+            <form class="row col-10 offset-1" method="POST" action="/send" role="form">
                 <div class="form-group col-12 col-md-6">
                   <label for="formGroupInput">Name</label>
                   <input type="text" class="form-control" id="input2" name="name" placeholder="Your Name">
@@ -93,10 +94,19 @@
                     <input type="text" class="form-control" id="input9" name="cell" placeholder="Your Cell here">
                   </div>
                   <div class="ml-auto mr-auto text-center">
-                    <input type="submit" value="List Now" class="btn btn-primary btn-lg">
+                    <input id="submitbutton" type="submit" value="List Now" class="btn btn-primary btn-lg" onclick="displaynearby()">
+                  </div>
+                  <div>
+                    <br>
+                    <p style="font-size: 1.5rem; color: red;" id="outputtext"></p>
                   </div>
               </form>
         </div>
+        </div>
+
+        <!--button onclick="whereAmI()">Where am I</button></p>  -->
+        
+
 
 
 
@@ -161,5 +171,12 @@
     <script src="../static/js/config.js"></script>
     <!--<script src="../static/js/logic.js"></script>-->
     <script src="../static/js/current_location_logic.js"></script>
+
+    <script>
+      document.getElementById("submitbutton").addEventListener("click", function(){
+        document.getElementById("outputtext").innerHTML = "Thank you for submitting your location. We are loading your nearby public parking spot for your comparison";
+      });
+</script>
+    </script>
     </body>
 </html>

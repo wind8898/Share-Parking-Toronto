@@ -31,7 +31,7 @@ function addMarkers(response){
     coordinates = [response[0].lat[i], response[0].lng[i]];
     //parkingMarkers.push(
       L.marker(coordinates)
-      .bindPopup("<h3>Address:" + response[0].address[i] + "</h3> <hr> <h3>Price per 30 min: " + response[0].rate_per_half_hour[i]+ "</h3>")
+      .bindPopup("<h3>Address:" + response[0].address[i] + "</h3> <hr> <h3>Price per 30 min: " + response[0].rate_per_half_hour[i]+ " CAD</h3>")
       .addTo(myMap);
     //)
   } 
@@ -54,7 +54,7 @@ function addTable(response){
   console.log(table_data);
 
   function tabulate(data, columns) {
-		var table = d3.select("#tab2").append("table");
+		var table = d3.select("#tab2_table").append("table").attr("class", "table table-responsive")
         var header = table.append("thead").append("tr");
         header
                 .selectAll("th")
@@ -88,7 +88,7 @@ function addTable(response){
 	}
 
 	// render the table(s)
-  tabulate(table_data, ['address', 'rate_per_half_hour', 'lat', 'lng']); 
+tabulate(table_data, ['Address', 'Rate_per_half_hour']); 
   
 }
 
@@ -107,10 +107,20 @@ function addTable(response){
 
     console.log(response);
     //addMarkers(response);
-    addTable(response);  
+    addTable(response); 
+    
   
   });
 
+function displayData(coordinates, hovertext) {
+    console.log(coordinates);
+    console.log(hovertext);
+    layerGroup.clearLayers();
+    tableMap.closePopup();
+    marker = L.marker(coordinates).addTo(layerGroup);
+    marker.bindPopup(hovertext).openPopup()
+          .addTo(tableMap);
+}
 
 //addMarkers();
 console.log("parkingmarkers");
@@ -149,7 +159,7 @@ var tableMap = L.map("map2", {
   center: [43.668094, -79.397544], 
   zoom: 14
  });
-
+ 
 
 L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
   attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
@@ -160,15 +170,9 @@ L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
 
 var layerGroup = L.layerGroup().addTo(tableMap);
 
-function displayData(coordinates, hovertext) {
-    console.log(coordinates);
-    console.log(hovertext);
-    layerGroup.clearLayers();
-    tableMap.closePopup();
-    marker = L.marker(coordinates).addTo(layerGroup);
-    marker.bindPopup(hovertext).openPopup()
-          .addTo(tableMap);
-}
+
+
+
 
 /*
 ////////////////////////////////////////////

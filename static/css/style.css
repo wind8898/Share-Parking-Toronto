@@ -2,7 +2,6 @@ body {
     background-color: white;
 }
 .header {
-    text-align: center;
     background-image: url("https://lp.yorkvilleu.ca/rs/961-UXG-821/images/header-bg.jpg");
     height: 60vh;
     background-position: center;
@@ -11,6 +10,19 @@ body {
     color: white;
     padding-top: 8rem;
     margin-bottom: 0;
+}
+
+.header-text-wrapper {
+    text-align: left;
+}
+
+.header_button {
+    text-align: left;
+}
+
+.header_button a {
+    margin-right: 2rem;
+    margin-bottom: 2rem;
 }
 
 .header h1 {
@@ -25,8 +37,15 @@ body {
     text-shadow: 0px 0px 1px rgba(255,255,255,0.7);
 }
 
-.header p a {
-    margin: 0 2rem;
+.video {
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    padding-bottom: 1rem;
+}
+
+.video-wrapper.video-wrapper-2 {
+    background-color: transparent;
 }
 
 .container {
@@ -53,10 +72,42 @@ body {
     padding-bottom: 2rem;
 }
 
-.video {
-    padding-bottom: 4rem;
 
+/* new section */
+.section-part-3 {
+    background-color: #d0dfe6;
+    color: #132c33;
+    font-weight: 600;
+    padding-top: 2rem;
+    padding-right: 2rem;
+    padding-left: 2rem;
 }
+
+.section-3-copy {
+    order: 1;
+    font-size: calc(16px + 12 * ((100vw - 300px) / 1500));
+    padding-bottom: 2rem;
+}
+
+.section-3-copy p span {
+    font-weight: 600;
+}
+
+.testimonial {
+    font-weight: 300;
+    padding: 1rem 0;
+}
+
+.testimonial-name {
+    font-weight: 700;
+    color: black;
+    padding: 1rem 0;
+}
+
+.testimonial-title {
+    font-weight: 400;
+}
+
 
 /* section 2 */
 .section-2 {
@@ -96,7 +147,9 @@ body {
   .card-title {
       color: red;
   }
-/* section 3 */
+
+
+  /* section 3 */
 
 .section-3 {
     text-align: center;
@@ -201,12 +254,10 @@ label {
 
 
 table {
-    width: 80%;
-    margin: 35px auto;
+    font-size: 12px;
 }
 
 table, th, td {
-    border: 1px solid black;
     border-collapse: collapse;
 }
 
@@ -223,6 +274,9 @@ th {
     background-color: #73b6e6;
 }
 
+td:nth-child(3), td:nth-child(4) {
+    display: none
+  }
 
 /* tooltip */
 .leaflet-tooltip {
@@ -246,3 +300,43 @@ label {
     text-align: left;
     line-height: 1.5rem;
 }
+
+.video-wrapper-2 {
+    display: none;
+    text-align: center;
+}
+
+.video-wrapper-2 button {
+    margin-bottom: 2rem;
+}
+
+@media only screen and (max-width: 895px) {
+    .header {
+        background-image: url("https://lp.yorkvilleu.ca/rs/961-UXG-821/images/header-bg.jpg");
+        height: 80vh;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        color: white;
+        padding-top: 8rem;
+        margin-bottom: 0;
+        text-align: center;
+    }
+
+    .video-wrapper {
+        display: none;
+    }
+     
+    .header-text-wrapper {
+        text-align: center;
+    }
+    
+    .header_button {
+        text-align: center;
+    }
+
+    .video-wrapper-2 {
+        display: block;
+    }
+
+  }
